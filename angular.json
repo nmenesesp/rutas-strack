@@ -1,0 +1,135 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "root-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/root-app",
+      "sourceRoot": "projects/root-app/src",
+      "prefix": "app-anguliemos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/root-app",
+            "index": "projects/root-app/src/index.html",
+            "main": "projects/root-app/src/main.ts",
+            "polyfills": "projects/root-app/src/polyfills.ts",
+            "tsConfig": "projects/root-app/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/root-app/src/favicon.ico",
+              "projects/root-app/src/assets",
+              "projects/root-app/src/mock"
+            ],
+            "styles": [
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "projects/root-app/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/root-app/src/environments/environment.ts",
+                  "with": "projects/root-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "root-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "root-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "root-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/root-app/src/test.ts",
+            "polyfills": "projects/root-app/src/polyfills.ts",
+            "tsConfig": "projects/root-app/tsconfig.spec.json",
+            "karmaConfig": "projects/root-app/karma.conf.js",
+            "assets": [
+              "projects/root-app/src/favicon.ico",
+              "projects/root-app/src/assets",
+              "projects/root-app/src/mock"
+            ],
+            "styles": [
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "projects/root-app/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/root-app/tsconfig.app.json",
+              "projects/root-app/tsconfig.spec.json",
+              "projects/root-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/root-app/e2e/protractor.conf.js",
+            "devServerTarget": "root-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "root-app:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "root-app"
+}
