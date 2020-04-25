@@ -44,4 +44,8 @@ export class LoginService {
   hasToken(): boolean {
     return this.token !== '';
   }
+
+  getToken() {
+    return this.token;
+  }
 }

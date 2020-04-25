@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
     user = new FormControl('', [Validators.required]);
     password = new FormControl('', [Validators.required]);
-    msgError = "";
+    msgError = '';
 
     constructor(public service: LoginService, public router: Router) {
       if (this.service.hasToken()) {
-        //this.router.navigate(['clients']);
+        this.router.navigate(['nathy/gatitos']);
       }
     }
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-      this.msgError = "";
+      this.msgError = '';
       const body = {
         email: this.user.value,
         password: this.password.value
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.service.login(body).subscribe((response: any) => {
         console.log('OK');
         this.service.setToken(this.user.value);
-        //this.router.navigate(['clients']);
+        this.router.navigate(['nathy/gatitos']);
       }, (e: any) => {
         console.log('ERROR');
         console.log(e);

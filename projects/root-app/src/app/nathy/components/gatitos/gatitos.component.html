@@ -1,0 +1,11 @@
+<H1>{{titulo}}</H1>
+
+<div *ngFor="let gatito of listaGatitos">
+    <label (click)="navigate(gatito.id)">{{gatito.id}}</label>
+   {{gatito.nombre}} ------- <input [value]="gatito.edad" />  <p *ngIf="gatito.edad > 5">------- Viejito</p>  -------    
+   <a [routerLink]="['/detalle-gatito', gatito.id]" routerLinkActive="router-link-active" >Ver Detalle</a>
+   <app-anguliemos-boton-cita #buttonCita (citaAsignada)="mensajeServidor = 'EL SERVIDOR DICE: ' + $event" [gato]="gatito.nombre" [titulo]="'Pedir cita para'"></app-anguliemos-boton-cita>
+
+</div>
+
+{{mensajeServidor}}

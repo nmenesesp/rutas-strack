@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SeguridadModule } from './seguridad/seguridad.module';
-import { NathyModule } from './nathy/nathy.module';
 
 @NgModule({
   declarations: [
@@ -12,8 +10,7 @@ import { NathyModule } from './nathy/nathy.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    SeguridadModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
